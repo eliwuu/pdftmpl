@@ -1,38 +1,9 @@
 import inquirer = require("inquirer");
 import { pageSizeList } from "./pageSize";
-import { Page, Env, Environment, Constraints, Unit, Orientation, LayoutSettings, Layout } from "./layoutSettings";
-import { layoutMenu } from "./menuItems/layoutMenu";
-import { templateMenu } from "./menuItems/templateMenu";
-import { Template } from "./templateSettings";
+import { Page, Env, Environment, Constraints, Unit, Orientation, Template, Print, Layout, Dpi } from "./settings";
+import { templateMenu, layoutMenu, printMenu, envMenu, pageMenu } from "./menuItems";
 
 export default class Menu {
-    static async initLayout() {
-        const data = await inquirer.prompt(layoutMenu).then(answers => {
-            return answers;
-        });
-
-        console.log(data);
-
-        const env: Env = {
-            origin: data["origin"] as Environment,
-            target: data["target"] as Environment,
-        };
-
-        const layout: Layout = {
-            constraint: data["constraint"] as Constraints,
-            dpi: data["dpi"] as number,
-            imageQuality: data["imageQuality"] as number,
-            zoom: data["zoom"] as number,
-            unit: data["unit"] as Unit,
-        };
-
-        const page = await this.getPage(data);
-
-        const settings: LayoutSettings = { env: env, layout: layout, page: page };
-
-        return settings;
-    }
-
     static async initTemplate() {
         const data = await inquirer.prompt(templateMenu).then(answers => {
             return answers;
@@ -55,7 +26,7 @@ export default class Menu {
         const fonts = data["fonts"] as boolean;
         const autoNumbering = data["autoNumbering"] as boolean;
 
-        const settings: Template = {
+        const template: Template = {
             git: git,
             author: author,
             name: name,
@@ -69,7 +40,53 @@ export default class Menu {
             autoNumbering: autoNumbering,
         }
 
-        return settings;
+        return template;
+    }
+    static async initLayout() {
+        const data = await inquirer.prompt(layoutMenu).then(answers => {
+            return answers;
+        });
+        const layout: Layout = {
+            constraint: data["constraint"] as Constraints,
+            unit: data["unit"] as Unit,
+        };
+
+        return layout;
+    }
+
+    static async initPrint() {
+        const data = await inquirer.prompt(printMenu).then(answers => {
+            return answers;
+        });
+
+        const print: Print = {
+            dpi: data["dpi"] as Dpi,
+            imageQuality: data["imageQuality"] as number,
+            zoom: 1
+        }
+
+        return print;
+    }
+
+    static async initEnv() {
+        const data = await inquirer.prompt(envMenu).then(answers => {
+            return answers;
+        });
+
+        const env: Env = {
+            target: data["target"] as Environment,
+            origin:  "Headless"
+        }
+
+        return env;
+    }
+
+    static async initPage() {
+        const data = await inquirer.prompt(pageMenu).then(answers => {
+            return answers;
+        });
+
+        return this.getPage(data);
     }
 
     static async getPage(data: any): Promise<Page> {

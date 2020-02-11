@@ -11,34 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const inquirer = require("inquirer");
 const pageSize_1 = require("./pageSize");
-const layoutMenu_1 = require("./menuItems/layoutMenu");
-const templateMenu_1 = require("./menuItems/templateMenu");
+const menuItems_1 = require("./menuItems");
 class Menu {
-    static initLayout() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const data = yield inquirer.prompt(layoutMenu_1.layoutMenu).then(answers => {
-                return answers;
-            });
-            console.log(data);
-            const env = {
-                origin: data["origin"],
-                target: data["target"],
-            };
-            const layout = {
-                constraint: data["constraint"],
-                dpi: data["dpi"],
-                imageQuality: data["imageQuality"],
-                zoom: data["zoom"],
-                unit: data["unit"],
-            };
-            const page = yield this.getPage(data);
-            const settings = { env: env, layout: layout, page: page };
-            return settings;
-        });
-    }
     static initTemplate() {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield inquirer.prompt(templateMenu_1.templateMenu).then(answers => {
+            const data = yield inquirer.prompt(menuItems_1.templateMenu).then(answers => {
                 return answers;
             });
             console.log(data);
@@ -54,7 +31,7 @@ class Menu {
             const css = data["css"];
             const fonts = data["fonts"];
             const autoNumbering = data["autoNumbering"];
-            const settings = {
+            const template = {
                 git: git,
                 author: author,
                 name: name,
@@ -67,7 +44,52 @@ class Menu {
                 fonts: fonts,
                 autoNumbering: autoNumbering,
             };
-            return settings;
+            return template;
+        });
+    }
+    static initLayout() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield inquirer.prompt(menuItems_1.layoutMenu).then(answers => {
+                return answers;
+            });
+            const layout = {
+                constraint: data["constraint"],
+                unit: data["unit"],
+            };
+            return layout;
+        });
+    }
+    static initPrint() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield inquirer.prompt(menuItems_1.printMenu).then(answers => {
+                return answers;
+            });
+            const print = {
+                dpi: data["dpi"],
+                imageQuality: data["imageQuality"],
+                zoom: 1
+            };
+            return print;
+        });
+    }
+    static initEnv() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield inquirer.prompt(menuItems_1.envMenu).then(answers => {
+                return answers;
+            });
+            const env = {
+                target: data["target"],
+                origin: "Headless"
+            };
+            return env;
+        });
+    }
+    static initPage() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield inquirer.prompt(menuItems_1.pageMenu).then(answers => {
+                return answers;
+            });
+            return this.getPage(data);
         });
     }
     static getPage(data) {

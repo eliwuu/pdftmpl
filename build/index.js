@@ -26,42 +26,36 @@ const menu_1 = __importDefault(require("./menu"));
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const cwd = process.cwd();
+        const currentOs = os.platform();
         const template = yield menu_1.default.initTemplate();
         const layout = yield menu_1.default.initLayout();
-        const defaults = setDefaultSettings();
-        layout.env.origin = defaults.origin;
-        layout.layout.dpi = defaults.dpi;
-        layout.layout.zoom = defaults.zoom;
-        fs_1.writeFileSync(path.join(cwd, "settings.json"), JSON.stringify({ template, layout }));
+        const print = yield menu_1.default.initPrint();
+        const page = yield menu_1.default.initPage();
+        const env = yield menu_1.default.initEnv();
+        const dpi = setDpi(env, currentOs);
+        env.origin = dpi.origin;
+        print.zoom = dpi.zoom;
+        fs_1.writeFileSync(path.join(cwd, "settings.json"), JSON.stringify({ template, layout, print, page, env }));
     });
 }
 main();
-function setDefaultSettings() {
-    const currentOs = os.platform();
-    console.log(currentOs);
+function setDpi(env, currentOs) {
     let origin;
-    let zoom;
-    let dpi;
     switch (currentOs) {
         case "darwin":
             origin = "Mac";
-            // settings for retina mac
-            zoom = 96 / 300;
-            dpi = 300;
+            break;
         case "win32":
             origin = "Windows";
-            dpi = 96;
-            zoom = 1;
+            break;
         case "linux":
-            console.log(" in linux");
             origin = "Linux";
-            dpi = 96;
-            zoom = 1;
+            break;
         default:
-            console.log("default");
             origin = "Headless";
-            dpi = 96;
-            zoom = 1;
     }
-    return { origin: origin, dpi: dpi, zoom: zoom };
+    const zoomOrigin = origin === "Mac" && env.target != "Mac" ? 110 / 96 : null;
+    const zoomTarget = env.target === "Mac" && origin != "Mac" ? 96 / 110 : 1;
+    const zoom = zoomOrigin === null ? zoomTarget : zoomOrigin;
+    return { zoom: zoom, origin: origin };
 }

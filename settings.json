@@ -1,1 +1,34 @@
-{"template":{"git":true,"author":"","name":"mlkm","header":false,"footer":false,"content":true,"images":true,"js":true,"css":true,"fonts":true,"autoNumbering":true},"layout":{"env":{"origin":"Headless","target":"Mac"},"layout":{"constraint":"Fixed","dpi":96,"zoom":1,"unit":"px"},"page":{"name":"A4","width":210,"height":297,"orientation":"portrait"}}}
+{
+    "template": {
+        "git": true,
+        "author": "Marek",
+        "name": "Template",
+        "header": true,
+        "footer": true,
+        "content": true,
+        "images": true,
+        "js": true,
+        "css": true,
+        "fonts": true,
+        "autoNumbering": true
+    },
+    "layout": {
+        "constraint": "Fixed",
+        "unit": "px"
+    },
+    "print": {
+        "dpi": 2044,
+        "imageQuality": "100",
+        "zoom": 0.8727272727272727
+    },
+    "page": {
+        "name": "A4",
+        "width": 210,
+        "height": 297,
+        "orientation": "portrait"
+    },
+    "env": {
+        "target": "Mac",
+        "origin": "Linux"
+    }
+}

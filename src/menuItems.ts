@@ -1,6 +1,6 @@
-import { pageSizeList } from "../pageSize";
+import { pageSizeList } from "./pageSize";
 
-export const template = [
+export const templateMenu = [
     {
         type: "confirm",
         name: "git_repo",
@@ -62,7 +62,7 @@ export const template = [
     }
 ]
 
-export const layout = [
+export const layoutMenu = [
     {
         type: "list",
         name: "constraint",
@@ -77,7 +77,7 @@ export const layout = [
     },
 ]
 
-export const print = [
+export const printMenu = [
     {
         type: "list",
         name: "dpi",
@@ -98,7 +98,7 @@ export const print = [
     }
 ]
 
-export const env = [
+export const envMenu = [
     {
         type: "list",
         name: "target",
@@ -107,7 +107,7 @@ export const env = [
     }
 ]
 
-export const page = [
+export const pageMenu = [
     {
         type: "list",
         name: "page",
@@ -120,49 +120,6 @@ export const page = [
         message: "Select document orientation",
         choices: ["portrait", "landscape"]
     },
-]
-
-export const menu = [
-    // {
-    //     type: "list",
-    //     name: "origin",
-    //     message: "Select your os",
-    //     choices: ["Mac", "Windows", "Linux"]
-    // },
-
-    // {
-    //     type: "input",
-    //     name: "dpi",
-    //     message: "Set pdf dpi [72-200] (this affects sizes on printed document)"
-    // },
-    // {
-    //     type: "input",
-    //     name: "imageQuality",
-    //     message: "Set image quality [0-100]"
-    // },
-    // {
-    //     type: "input",
-    //     name: "zoom",
-    //     message: "Set zoom [0.1 - 3.0] (this affects sizes on printed document)"
-    // },
-
-    // {
-    //     type: "input",
-    //     name: "pageWidth",
-    //     message: "Page width (in mm)",
-    //     default: function () {
-    //         return 210;
-    //     }
-    // },
-    // {
-    //     type: "input",
-    //     name: "pageHeight",
-    //     message: "Page height (in mm)",
-    //     default: function () {
-    //         return 297;
-    //     }
-    // },
-
 ]
 
 function getPageSizes(): string[] {
