@@ -1,0 +1,8 @@
+# build artefacts
+build/*
+# data definition files
+**/*.d.ts
+# 3rd party libs
+/src/public/
+# custom definition files
+/src/types/
