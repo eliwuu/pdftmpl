@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How-To</title>
+    <link rel="stylesheet" href="template.css">
+    <script src="template.js"></script>
+</head>
+
+<body>
+    <section class="container">
+        <div id="mrg" class="btn selected" onclick="selectItem(this.id)">
+            Printer Margins
+        </div>
+        <div id="userMrg" class="btn" onclick="selectItem(this.id)">
+            User Margins
+        </div>
+        <div id="ftr" class="btn">
+            Footer
+        </div>
+        <div id="cont" class="btn">
+            Content
+        </div>
+        <div id="hdr" class="btn">
+            Header
+        </div>
+        <div id="combined" class="btn">
+            Combined
+        </div>
+    </section>
+    <section class="container">
+        <table class="printMargin">
+            <tr class="top">
+                <td class="mrg" colspan="3">Printer Margin: 2.5mm</td>
+            </tr>
+            <tr class="content">
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="top">
+                <td class="mrg" colspan="3">Printer Margin: 2.5mm</td>
+            </tr>
+        </table>
+    </section>
+    <section class="container">
+        <table class="userMargin">
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="content">
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="cnt">CONTENT GOES HERE</td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="container">
+        <table class="userMargin">
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="content header">
+                <td class="margin mrg">
+                
+                </td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="cnt">HEADER (20mm) GOES HERE</td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="margin mrg">
+
+                </td>
+            </tr>
+            <tr class="content">
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+        </table>
+    </section>
+    <section class="container">
+        <table class="userMargin">
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="content">
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="content header">
+                <td class="margin mrg">
+                
+                </td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="cnt">Footer (20mm) GOES HERE</td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="margin mrg">
+
+                </td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="container">
+        <table class="userMargin">
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="content header">
+                <td class="margin mrg">
+                
+                </td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="cnt">HEADER (20mm) GOES HERE</td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="margin mrg">
+
+                </td>
+            </tr>
+            <tr class="content hf">
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td>CONTENT (242mm) GOES HERE</td>
+                <td class="margin pdd">
+                    <div class="rotate">
+                        <div class="vertical">
+                            User Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+                <td class="margin mrg">
+                    <div class="rotate">
+                        <div class="vertical">
+                            Printer Margin: 2.5mm
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="content header">
+                <td class="margin mrg">
+                
+                </td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="cnt">Footer (20mm) GOES HERE</td>
+                <td class="margin pdd">
+
+                </td>
+                <td class="margin mrg">
+
+                </td>
+            </tr>
+            <tr class="top">
+                <td class="pdd" colspan="5">User Margin: 2.5mm</td>
+            </tr>
+            <tr class="top">
+                <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
+            </tr>
+        </table>
+    </section>
+
+</body>
+
+</html>

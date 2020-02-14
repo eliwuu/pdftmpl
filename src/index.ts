@@ -3,20 +3,27 @@ import * as os from 'os';
 import path = require("path");
 import Menu from "./menu";
 import { Env, Environment } from "./settings";
+import { templateMenu, layoutMenu, printMenu, pageMenu, envMenu } from "./menuItems";
+import settings from "./settingsBuilder";
 
 async function main() {
     const cwd = process.cwd();
     const currentOs = os.platform();
 
-    const template = await Menu.initTemplate();
+    const template = settings.makeTemplate(await Menu.init(templateMenu));
+    // const template = await Menu.initTemplate();
 
-    const layout = await Menu.initLayout();
+    const layout = settings.makeLayout(await Menu.init(layoutMenu));
+    // const layout = await Menu.initLayout();
 
-    const print = await Menu.initPrint();
+    const print = settings.makePrint(await Menu.init(printMenu));
+    // const print = await Menu.initPrint();
 
-    const page = await Menu.initPage()
+    const page = settings.makePage(await Menu.init(pageMenu));
+    // const page = await Menu.initPage();
 
-    const env = await Menu.initEnv();
+    const env = settings.makeEnv(await Menu.init(envMenu));
+    // const env = await Menu.initEnv();
 
     const dpi = setDpi(env, currentOs);
 

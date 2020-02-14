@@ -82,7 +82,7 @@ export const printMenu = [
         type: "list",
         name: "dpi",
         message: "Select document dpi",
-        choices: [100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | 1100 | 1200]
+        choices: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200]
     },
     {
         type: "input",
@@ -119,6 +119,46 @@ export const pageMenu = [
         name: "orientation",
         message: "Select document orientation",
         choices: ["portrait", "landscape"]
+    },
+    {
+        type: "input",
+        name: "marginTop",
+        message: "Top margin (mm)"
+    },
+    {
+        type: "input",
+        name: "marginBottom",
+        message: "Bottom margin (mm)"
+    },
+    {
+        type: "input",
+        name: "marginLeft",
+        message: "Left margin (mm)"
+    },
+    {
+        type: "input",
+        name: "marginRight",
+        message: "Right margin (mm)"
+    },
+    {
+        type: "input",
+        name: "footerHeight",
+        message: "Footer height (mm)"
+    },
+    {
+        type: "input",
+        name: "footerSpacing",
+        message: "Footer spacing (mm)"
+    },
+    {
+        type: "input",
+        name: "headerHeight",
+        message: "Header height (mm)"
+    },
+    {
+        type: "input",
+        name: "headerSpacing",
+        message: "Header spacing (mm)"
     },
 ]
 

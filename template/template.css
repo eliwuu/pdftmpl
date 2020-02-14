@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    font-size: small;
+}
+
+section.container {
+    padding: 10mm;
+}
+
+table {
+    width: 210mm;
+    height: 297mm;
+    border: 0;
+    padding: 0;
+    /* border-collapse: separate;
+    border-spacing: 0.1mm;
+    border: 0.1mm dotted black; */
+}
+
+table.printMargin {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+table.userMargin {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+table.printMargin td {
+    text-align: center;
+}
+
+table.printMargin tr.content td {
+    width: 205mm;
+}
+
+table.printMargin tr.content td.margin {
+    width: 2.5mm;
+}
+
+table.printMargin tr.top {
+    height: 2.5mm;
+}
+
+table.printMargin tr.content {
+    height: 292mm;
+}
+
+
+table.userMargin td {
+    text-align: center;
+}
+
+table.userMargin tr.content td {
+    width: 200mm;
+}
+
+table.userMargin tr.content td.margin {
+    width: 2.5mm;
+}
+
+table.userMargin tr.top {
+    height: 2.5mm;
+}
+
+table.userMargin tr.content {
+    height: 287mm;
+}
+
+table.userMargin tr.content.hf {
+    height: 247mm;
+}
+
+table.page {
+    height: 297mm;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rotate {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    width: 2.5mm;
+}
+
+.vertical {
+    width: 45mm;
+}
+
+.mrg {
+    background-color: rgb(254, 238, 189);
+}
+
+.pdd {
+    background-color: rgb(195, 215, 154);
+}
+
+.cnt {
+    background-color: rgb(140, 184, 198);
+}
+
+.userMargin tr.content.header {
+    height: 20mm;
+}
+
+.userMargin tr.content.rest {
+    height: 272mm;
+}
+
+.btn {
+    background-color: white;
+    border: 0.5mm solid violet;
+    border-radius: 1.5mm;
+    color: violet;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.btn.selected {
+    background-color: violet;
+    color: white;
+}

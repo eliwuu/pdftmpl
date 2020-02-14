@@ -36,3 +36,8 @@ export const fullPageSizeList = {
     Letter: { width: 215.9, height: 279.4 },
     Tabloid: { width: 279.4, height: 431.8 }
 }
+
+export const printMediaDefaults = {
+    A4: { printerMargins: 2.5, userMargin: 1.5 },
+    Letter: {printerMargins: 4, }
+}

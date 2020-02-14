@@ -22,6 +22,18 @@ export interface Layout {
     unit: Unit
 }
 
+export interface Margin {
+    marginTop: number,
+    marginBottom: number,
+    marginRight: number,
+    marginLeft: number,
+}
+
+export interface Block {
+    height: number
+    spacing: number
+}
+
 export interface Print {
     dpi: Dpi,
     zoom: number,
@@ -32,7 +44,10 @@ export interface Page {
     name?: string,
     width: number,
     height: number,
-    orientation: Orientation
+    orientation: Orientation,
+    margins?: Margin,
+    footer?: Block,
+    header?: Block
 }
 
 export interface Settings {
