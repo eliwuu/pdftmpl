@@ -1,10 +1,11 @@
-export const pageSizeList = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.pageSizeList = {
     A4: { width: 210, height: 297 },
     B5: { width: 176, height: 250 },
     C5E: { width: 163, height: 229 }
-}
-
-export const fullPageSizeList = {
+};
+exports.fullPageSizeList = {
     A0: { width: 841, height: 1189 },
     A1: { width: 594, height: 841 },
     A2: { width: 420, height: 594 },
@@ -35,9 +36,8 @@ export const fullPageSizeList = {
     Legal: { width: 215.9, height: 355.6 },
     Letter: { width: 215.9, height: 279.4 },
     Tabloid: { width: 279.4, height: 431.8 }
-}
-
-export const pageDefaults = {
+};
+exports.pageDefaults = {
     A4: { printerMargins: 2.5, userMargin: 2.5 },
-    Letter: {printerMargins: 4, }
-}
+    Letter: { printerMargins: 4, }
+};

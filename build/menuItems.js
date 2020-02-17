@@ -1,6 +1,7 @@
-import { pageSizeList } from "./pageSize";
-
-export const templateMenu = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const pageSize_1 = require("./pageSize");
+exports.templateMenu = [
     {
         type: "confirm",
         name: "git_repo",
@@ -15,7 +16,7 @@ export const templateMenu = [
         type: "input",
         name: "name",
         message: "Template Name: ",
-        validate: function (value: string) {
+        validate: function (value) {
             if (value.length < 3) {
                 return "You need to specify template name";
             }
@@ -77,7 +78,6 @@ export const templateMenu = [
         choices: ["px", "mm", "cm", "in"],
         default: "px"
     },
-
     {
         type: "list",
         name: "dpi",
@@ -94,7 +94,6 @@ export const templateMenu = [
             if (answer.length < 1) {
                 return "You must select at least one element";
             }
-
             return true;
         }
     },
@@ -121,15 +120,12 @@ export const templateMenu = [
         name: "autoNumbering",
         message: "Template use automatic page numbering? "
     },
-]
-
-function getPageSizes(): string[] {
-    return Object.keys(pageSizeList);
+];
+function getPageSizes() {
+    return Object.keys(pageSize_1.pageSizeList);
 }
-
-function marginIsNumber(value: string) {
+function marginIsNumber(value) {
     const parse = Number.parseFloat(value);
-
     if (Number.isNaN(parse)) {
         return "Margin must be a number";
     }

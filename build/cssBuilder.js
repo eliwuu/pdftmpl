@@ -1,26 +1,21 @@
-import { Unit, Margin, Dpi, Layout } from "./settings";
-import { pageDefaults, pageSizeList } from "./pageSize";
-
-export default class Css {
-
-    static MakeContent(layout: Layout) {
-        const widthOrientation =
-            layout.orientation === "portrait" ?
-                pageSizeList[layout.pageSize].width : pageSizeList[layout.pageSize].height;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const pageSize_1 = require("./pageSize");
+class Css {
+    static MakeContent(layout) {
+        console.log(layout.pageSize);
+        console.log(pageSize_1.pageSizeList[layout.pageSize]);
+        const widthOrientation = layout.orientation === "portrait" ?
+            pageSize_1.pageSizeList[layout.pageSize].width : pageSize_1.pageSizeList[layout.pageSize].height;
         const page = { width: widthOrientation };
-
-        let bodyWidth: number;
-        let pageWidth: number;
-        let leftMargin: number;
-        let rightMargin: number;
-
+        let bodyWidth;
+        let pageWidth;
+        let leftMargin;
+        let rightMargin;
         switch (layout.unit) {
             case "px":
                 bodyWidth = this.mmToPx(page.width, layout.dpi);
-                pageWidth = this.mmToPx(
-                    page.width - layout.margins.marginLeft - layout.margins.marginRight,
-                    layout.dpi);
+                pageWidth = this.mmToPx(page.width - layout.margins.marginLeft - layout.margins.marginRight, layout.dpi);
                 leftMargin = this.mmToPx(layout.margins.marginLeft, layout.dpi);
                 rightMargin = this.mmToPx(layout.margins.marginRight, layout.dpi);
                 break;
@@ -43,51 +38,39 @@ export default class Css {
                 rightMargin = layout.margins.marginRight;
                 break;
         }
-
-        const css = `body {
-    min-width: ${bodyWidth}${layout.unit};
-    max-width: ${bodyWidth}${layout.unit};
-    padding: 0;
-}
-.page {
-    min-width: ${pageWidth}${layout.unit};
-    max-width: ${pageWidth}${layout.unit};
-    margin-left: ${leftMargin}${layout.unit};
-    margin-right: ${rightMargin}${layout.unit};
-}`
-
-        return {
-            css: css,
-            bodyWidth: bodyWidth,
-            leftMargin: leftMargin,
-            rightMargin: rightMargin,
-            pageWidth: pageWidth
-        };
-
+        const css = `
+            body {
+                min-width: ${bodyWidth}${layout.unit};
+                max-width: ${bodyWidth}${layout.unit};
+                padding: 0;
+            }
+            .page {
+                min-width: ${pageWidth}${layout.unit};
+                max-width: ${pageWidth}${layout.unit};
+                margin-left: ${leftMargin}${layout.unit};
+                margin-right: ${rightMargin}${layout.unit};
+            }
+        `;
+        return css;
     }
-
-    static MakeBlock(layout: Layout, height: number, elementName: string) {
-        const widthOrientation =
-            layout.orientation === "portrait" ?
-                pageSizeList[layout.pageSize].width : pageSizeList[layout.pageSize].height;
-
+    static MakeBlock(layout, height, elementName) {
+        console.log(layout.pageSize);
+        console.log(pageSize_1.pageSizeList[layout.pageSize]);
+        const widthOrientation = layout.orientation === "portrait" ?
+            pageSize_1.pageSizeList[layout.pageSize].width : pageSize_1.pageSizeList[layout.pageSize].height;
         console.log(widthOrientation);
-
         const page = { width: widthOrientation };
-
-        let bodyWidth: number;
-        let pageWidth: number;
+        console.log(page.width);
+        let bodyWidth;
+        let pageWidth;
         // let topMargin: number;
         // let bottomMargin: number;
-        let leftMargin: number;
-        let rightMargin: number;
-
+        let leftMargin;
+        let rightMargin;
         switch (layout.unit) {
             case "px":
                 bodyWidth = this.mmToPx(page.width, layout.dpi);
-                pageWidth = this.mmToPx(
-                    page.width - layout.margins.marginLeft - layout.margins.marginRight,
-                    layout.dpi);
+                pageWidth = this.mmToPx(page.width - layout.margins.marginLeft - layout.margins.marginRight, layout.dpi);
                 leftMargin = this.mmToPx(layout.margins.marginLeft, layout.dpi);
                 rightMargin = this.mmToPx(layout.margins.marginRight, layout.dpi);
                 height = this.mmToPx(height, layout.dpi);
@@ -113,39 +96,31 @@ export default class Css {
                 rightMargin = layout.margins.marginRight;
                 break;
         }
-
         // TODO: Check for margin top
-
-        const css = `body {
-    min-width: ${bodyWidth}${layout.unit};
-    max-width: ${bodyWidth}${layout.unit};
-    min-height: ${height}${layout.unit};
-    max-height: ${height}${layout.unit};
-    padding: 0;
-}
-${elementName} {
-    min-width: ${pageWidth}${layout.unit};
-    max-width: ${pageWidth}${layout.unit};
-    min-height: ${height}${layout.unit};
-    max-height: ${height}${layout.unit};
-    margin-left: ${leftMargin}${layout.unit};
-    margin-right: ${rightMargin}${layout.unit};
-}`
-
-        return {
-            css: css,
-            bodyWidth: bodyWidth,
-            leftMargin: leftMargin,
-            rightMargin: rightMargin,
-            pageWidth: pageWidth
-        };
-
+        const css = `
+            body {
+                min-width: ${bodyWidth}${layout.unit};
+                max-width: ${bodyWidth}${layout.unit};
+                min-height: ${height}${layout.unit};
+                max-height: ${height}${layout.unit};
+                padding: 0;
+            }
+            ${elementName} {
+                min-width: ${pageWidth}${layout.unit};
+                max-width: ${pageWidth}${layout.unit};
+                min-height: ${height}${layout.unit};
+                max-height: ${height}${layout.unit};
+                margin-left: ${leftMargin}${layout.unit};
+                margin-right: ${rightMargin}${layout.unit};
+            }
+        `;
+        return css;
     }
-
-    private static mmToPx(width: number, dpi: Dpi) {
-        return Math.round((width * dpi) / 25.4)
+    static mmToPx(width, dpi) {
+        return Math.round((width * dpi) / 25.4);
     }
-    private static mmToIn(width: number) {
+    static mmToIn(width) {
         return (Math.round((width / 25.4237288) * 100) / 100);
     }
 }
+exports.default = Css;

@@ -1,0 +1,13 @@
+
+            body {
+                min-width: 210mm;
+                max-width: 210mm;
+                padding: 0;
+            }
+            .page {
+                min-width: 200mm;
+                max-width: 200mm;
+                margin-left: 5mm;
+                margin-right: 5mm;
+            }
+        
