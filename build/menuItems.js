@@ -75,13 +75,13 @@ exports.templateMenu = [
         type: "list",
         name: "unit",
         message: "Select template units",
-        choices: ["px", "mm", "cm", "in"],
-        default: "px"
+        choices: ["mm", "px", "cm", "in"],
+        default: "mm"
     },
     {
         type: "list",
         name: "dpi",
-        message: "Select document dpi",
+        message: "Select document dpi (suggested: 300)",
         choices: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200],
         default: 300
     },

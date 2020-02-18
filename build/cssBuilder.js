@@ -3,8 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pageSize_1 = require("./pageSize");
 class Css {
     static MakeContent(layout) {
-        console.log(layout.pageSize);
-        console.log(pageSize_1.pageSizeList[layout.pageSize]);
         const widthOrientation = layout.orientation === "portrait" ?
             pageSize_1.pageSizeList[layout.pageSize].width : pageSize_1.pageSizeList[layout.pageSize].height;
         const page = { width: widthOrientation };
@@ -38,29 +36,30 @@ class Css {
                 rightMargin = layout.margins.marginRight;
                 break;
         }
-        const css = `
-            body {
-                min-width: ${bodyWidth}${layout.unit};
-                max-width: ${bodyWidth}${layout.unit};
-                padding: 0;
-            }
-            .page {
-                min-width: ${pageWidth}${layout.unit};
-                max-width: ${pageWidth}${layout.unit};
-                margin-left: ${leftMargin}${layout.unit};
-                margin-right: ${rightMargin}${layout.unit};
-            }
-        `;
-        return css;
+        const css = `body {
+    min-width: ${bodyWidth}${layout.unit};
+    max-width: ${bodyWidth}${layout.unit};
+    padding: 0;
+    margin: 0
+}
+.page {
+    min-width: ${pageWidth}${layout.unit};
+    max-width: ${pageWidth}${layout.unit};
+    margin-left: ${leftMargin}${layout.unit};
+    margin-right: ${rightMargin}${layout.unit};
+}`;
+        return {
+            css: css,
+            bodyWidth: bodyWidth,
+            leftMargin: leftMargin,
+            rightMargin: rightMargin,
+            pageWidth: pageWidth
+        };
     }
     static MakeBlock(layout, height, elementName) {
-        console.log(layout.pageSize);
-        console.log(pageSize_1.pageSizeList[layout.pageSize]);
         const widthOrientation = layout.orientation === "portrait" ?
             pageSize_1.pageSizeList[layout.pageSize].width : pageSize_1.pageSizeList[layout.pageSize].height;
-        console.log(widthOrientation);
         const page = { width: widthOrientation };
-        console.log(page.width);
         let bodyWidth;
         let pageWidth;
         // let topMargin: number;
@@ -97,24 +96,29 @@ class Css {
                 break;
         }
         // TODO: Check for margin top
-        const css = `
-            body {
-                min-width: ${bodyWidth}${layout.unit};
-                max-width: ${bodyWidth}${layout.unit};
-                min-height: ${height}${layout.unit};
-                max-height: ${height}${layout.unit};
-                padding: 0;
-            }
-            ${elementName} {
-                min-width: ${pageWidth}${layout.unit};
-                max-width: ${pageWidth}${layout.unit};
-                min-height: ${height}${layout.unit};
-                max-height: ${height}${layout.unit};
-                margin-left: ${leftMargin}${layout.unit};
-                margin-right: ${rightMargin}${layout.unit};
-            }
-        `;
-        return css;
+        const css = `body {
+    min-width: ${bodyWidth}${layout.unit};
+    max-width: ${bodyWidth}${layout.unit};
+    min-height: ${height}${layout.unit};
+    max-height: ${height}${layout.unit};
+    padding: 0;
+    margin: 0;
+}
+${elementName} {
+    min-width: ${pageWidth}${layout.unit};
+    max-width: ${pageWidth}${layout.unit};
+    min-height: ${height}${layout.unit};
+    max-height: ${height}${layout.unit};
+    margin-left: ${leftMargin}${layout.unit};
+    margin-right: ${rightMargin}${layout.unit};
+}`;
+        return {
+            css: css,
+            bodyWidth: bodyWidth,
+            leftMargin: leftMargin,
+            rightMargin: rightMargin,
+            pageWidth: pageWidth
+        };
     }
     static mmToPx(width, dpi) {
         return Math.round((width * dpi) / 25.4);

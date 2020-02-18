@@ -1,8 +1,7 @@
-import { subst } from "./subst";
-
-export default class Html {
-
-    static MakeContent(templateName: string) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Html {
+    static MakeContent(templateName) {
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,12 +16,10 @@ export default class Html {
     
     </div>
 </body>
-</html>`
-
+</html>`;
         return html;
     }
-
-    static MakeBlock(autoNumbering: boolean, blockName: string) {
+    static MakeBlock(autoNumbering, blockName) {
         const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,14 +29,13 @@ export default class Html {
     <script src="js/${blockName}.js"></script>
     ${blockName ? `<script src="js/subst.js"></script>` : ""}
 </head>
-${autoNumbering ? `<body onload="subst()">` : `<body>` }
+<body>
     <${blockName}>
     
     </${blockName}>
 </body>
-</html>`
-
+</html>`;
         return html;
     }
-
 }
+exports.default = Html;

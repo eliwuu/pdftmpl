@@ -1,0 +1,83 @@
+body {
+    min-width: 210mm;
+    max-width: 210mm;
+    padding: 0;
+    margin: 0;
+    background-color: beige;
+}
+
+.page {
+    min-width: 200mm;
+    max-width: 200mm;
+    margin-left: 5mm;
+    margin-right: 5mm;
+    background-color: lightslategray;
+}
+
+table {
+    min-width: 100%;
+    max-width: 100%;
+    table-layout: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    padding: 0;
+    margin: 0;
+    border-left: 0;
+    border-right: 0;
+    border-spacing: 0.75mm;
+}
+
+.overview td {
+    padding: 0;
+}
+
+.overview td.header {
+    min-width: 24mm;
+    max-width: 24mm;
+    background-color: rgb(80, 76, 76);
+    color: white;
+}
+
+.overview td.header-sm {
+    min-width: 18mm;
+    max-width: 18mm;
+    background-color: rgb(80, 76, 76);
+    color: white;
+}
+
+.overview td.value {
+    background-color: rgb(180, 180, 180);
+    color: black;
+}
+
+td.c1 {
+    min-width: 174mm;
+    max-width: 174mm;
+}
+
+td.c2 {
+    min-width: 74mm;
+    max-width: 74mm;
+}
+
+td.c3 {
+    min-width: 29.875mm;
+    max-width: 29.875mm;
+}
+
+td.c4 {
+    min-width: 29.875mm;
+    max-width: 29.875mm;
+}
+
+
+.textWrapper {
+    padding-top: 3mm;
+    padding-bottom: 3mm;
+    padding-right: 2mm;
+    padding-left: 2mm;
+}
+
+section.spacer {
+    padding-top: 10mm;
+}

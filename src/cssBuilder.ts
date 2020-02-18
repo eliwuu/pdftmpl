@@ -48,6 +48,7 @@ export default class Css {
     min-width: ${bodyWidth}${layout.unit};
     max-width: ${bodyWidth}${layout.unit};
     padding: 0;
+    margin: 0
 }
 .page {
     min-width: ${pageWidth}${layout.unit};
@@ -70,8 +71,6 @@ export default class Css {
         const widthOrientation =
             layout.orientation === "portrait" ?
                 pageSizeList[layout.pageSize].width : pageSizeList[layout.pageSize].height;
-
-        console.log(widthOrientation);
 
         const page = { width: widthOrientation };
 
@@ -122,6 +121,7 @@ export default class Css {
     min-height: ${height}${layout.unit};
     max-height: ${height}${layout.unit};
     padding: 0;
+    margin: 0;
 }
 ${elementName} {
     min-width: ${pageWidth}${layout.unit};
