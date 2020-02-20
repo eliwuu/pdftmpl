@@ -3,7 +3,8 @@ body {
     max-width: 210mm;
     padding: 0;
     margin: 0;
-    background-color: beige;
+    font-size: 8pt;
+    /* background-color: navajowhite; */
 }
 
 .page {
@@ -11,7 +12,7 @@ body {
     max-width: 200mm;
     margin-left: 5mm;
     margin-right: 5mm;
-    background-color: lightslategray;
+    /* background-color: paleturquoise; */
 }
 
 table {
@@ -19,11 +20,13 @@ table {
     max-width: 100%;
     table-layout: fixed;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: small;
     padding: 0;
     margin: 0;
     border-left: 0;
     border-right: 0;
+}
+
+table.overview {
     border-spacing: 0.75mm;
 }
 
@@ -45,8 +48,15 @@ table {
     color: white;
 }
 
+.overview td.header-md {
+    min-width: 22mm;
+    max-width: 22mm;
+    background-color: rgb(80, 76, 76);
+    color: white;
+}
+
 .overview td.value {
-    background-color: rgb(180, 180, 180);
+    background-color: rgb(240, 240, 240);
     color: black;
 }
 
@@ -61,8 +71,13 @@ td.c2 {
 }
 
 td.c3 {
-    min-width: 29.875mm;
-    max-width: 29.875mm;
+    min-width: 26.5mm;
+    max-width: 26.5mm;
+}
+
+td.c3-sm {
+    min-width: 24.5mm;
+    max-width: 24.5mm;
 }
 
 td.c4 {
@@ -70,14 +85,175 @@ td.c4 {
     max-width: 29.875mm;
 }
 
+.overview td.acc-sm {
+    min-width: 18mm;
+    max-width: 18mm;
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
+
+.overview td.acc-md {
+    min-width: 22mm;
+    max-width: 22mm;
+    background-color: rgb(240, 240, 240);
+    color: black;
+}
+
+.overview td.acc-val {
+    background-color: rgb(80, 76, 76);
+    color: white;
+}
 
 .textWrapper {
-    padding-top: 3mm;
-    padding-bottom: 3mm;
+    padding-top: 2mm;
+    padding-bottom: 2mm;
     padding-right: 2mm;
     padding-left: 2mm;
 }
 
 section.spacer {
     padding-top: 10mm;
+}
+
+table.excersise {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+}
+
+.ribbonIn {
+    background-color: rgb(48, 146, 226);
+}
+
+.ribbonOut {
+    background-color: white;
+}
+
+table.excersise thead tr {
+    min-height: 8mm;
+    max-height: 8mm;
+    height: 8mm;
+}
+
+table.excersise thead th {
+    padding: 0;
+    border: 0 solid white;
+}
+
+table.excersise tfoot th {
+    padding: 0;
+    border: 0 solid transparent;
+}
+
+table.excersise th.ribbonIn {
+    min-width: 8mm;
+    max-width: 8mm;
+    border: 0 solid transparent;
+    border-bottom: 0.1mm solid rgb(48, 146, 226);
+    border-top: 0.2mm solid white;
+}
+
+table.excersise th.ribbonOut {
+    min-width: 8mm;
+    max-width: 8mm;
+    border: 0 solid transparent;
+    border-top: 0.1mm solid rgb(48, 146, 226);
+}
+
+table.excersise th.mr-2 {
+    min-width: 2mm;
+    max-width: 2mm;
+}
+
+table.excersise th.time {
+    min-width: 16.5mm;
+    max-width: 16.5mm;
+}
+
+table.excersise thead th.time {
+    background-color: rgb(240, 240, 240);
+}
+
+table.excersise tfoot th.time {
+    background-color: white;
+}
+
+table.excersise thead th.time {
+    background-color: rgb(240, 240, 240);
+}
+
+table.excersise tfoot th.time {
+    background-color: white;
+}
+
+table.excersise th.col-80 {
+    min-width: 86.5mm;
+    max-width: 86.5mm;
+}
+table.excersise th.col-88 {
+    min-width: 88.5mm;
+    max-width: 88.5mm;
+}
+table.excersise th.col-84 {
+    min-width: 84mm;
+    max-width: 84mm;
+}
+
+table.excersise thead th.col-80 {
+    background-color: rgb(240, 240, 240);
+}
+
+table.excersise tfoot th.col-80 {
+    background-color: white;
+}
+
+table.excersise th.arrowIn {
+    background-image: url("../img/arrowIn.svg");
+    background-repeat: no-repeat;
+}
+
+table.excersise th.arrowOut {
+    background-image: url("../img/arrowOut.svg");
+    background-repeat: no-repeat;
+}
+
+table.excersise tfoot tr {
+    min-height: 8mm;
+    max-height: 8mm;
+    height: 8mm;
+}
+
+.pd-5 {
+    padding-top: 5mm;
+}
+
+.imgWrapper {
+    position: relative;
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+.bigImg {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.vertical {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    position: relative;
+    color: white;
+    width: 7mm;
+}
+
+.verticalWrapper {
+    width: 30mm;
+    margin-top: 15mm;
+    /* text-align: left; */
+}
+
+td.ribbonIn {
+    padding-bottom: 0;
+    vertical-align: middle;
 }
