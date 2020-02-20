@@ -112,7 +112,10 @@ td.c4 {
 }
 
 section.spacer {
-    padding-top: 10mm;
+    padding-top: 5mm;
+}
+section.spacer {
+    padding-top: 2.5mm;
 }
 
 table.excersise {
@@ -121,8 +124,11 @@ table.excersise {
     border: 0;
 }
 
-.ribbonIn {
+.ex1 .ribbonIn {
     background-color: rgb(48, 146, 226);
+}
+.ex2 .ribbonIn {
+    background-color: rgb(27, 118, 192);
 }
 
 .ribbonOut {
@@ -158,6 +164,21 @@ table.excersise th.ribbonOut {
     max-width: 8mm;
     border: 0 solid transparent;
     border-top: 0.1mm solid rgb(48, 146, 226);
+}
+
+table.excersise.ex2 th.ribbonIn {
+    min-width: 8mm;
+    max-width: 8mm;
+    border: 0 solid transparent;
+    border-bottom: 0.1mm solid rgb(27, 118, 192);
+    border-top: 0.2mm solid white;
+}
+
+table.excersise.ex2 th.ribbonOut {
+    min-width: 8mm;
+    max-width: 8mm;
+    border: 0 solid transparent;
+    border-top: 0.1mm solid rgb(27, 118, 192);
 }
 
 table.excersise th.mr-2 {
@@ -214,6 +235,15 @@ table.excersise th.arrowIn {
 
 table.excersise th.arrowOut {
     background-image: url("../img/arrowOut.svg");
+    background-repeat: no-repeat;
+}
+table.excersise.ex2 th.arrowIn {
+    background-image: url("../img/arrowIn1.svg");
+    background-repeat: no-repeat;
+}
+
+table.excersise.ex2 th.arrowOut {
+    background-image: url("../img/arrowOut1.svg");
     background-repeat: no-repeat;
 }
 

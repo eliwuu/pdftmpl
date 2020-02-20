@@ -1,16 +1,16 @@
 body {
     min-width: 210mm;
     max-width: 210mm;
-    min-height: 20mm;
-    max-height: 20mm;
+    min-height: 15mm;
+    max-height: 15mm;
     padding: 0;
     margin: 0;
 }
 footer {
     min-width: 200mm;
     max-width: 200mm;
-    min-height: 20mm;
-    max-height: 20mm;
+    min-height: 15mm;
+    max-height: 15mm;
     margin-left: 5mm;
     margin-right: 5mm;
 }
@@ -23,11 +23,10 @@ footer {
 }
 
 hr {
-    border-top: 0.5mm;
-    border-color: #000;
-    border-spacing: 0;
-    padding: 0;
-    margin-bottom: 2mm;
+    border: 1px solid gray;
+    margin: 0;
+    margin-bottom: 1mm;
+    height: 100%;
 }
 
 .leftText {

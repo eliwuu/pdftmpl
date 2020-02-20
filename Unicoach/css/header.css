@@ -1,8 +1,8 @@
 body {
     min-width: 210mm;
     max-width: 210mm;
-    min-height: 25mm;
-    max-height: 25mm;
+    min-height: 20mm;
+    max-height: 20mm;
     padding: 0;
     margin: 0;
     font-size: 7.5pt;
@@ -10,8 +10,8 @@ body {
 header {
     min-width: 200mm;
     max-width: 200mm;
-    min-height: 25mm;
-    max-height: 25mm;
+    min-height: 20mm;
+    max-height: 20mm;
     margin-left: 5mm;
     margin-right: 5mm;
 }
@@ -22,13 +22,13 @@ header {
 }
 
 .unicoachLogo {
-    height: 15mm;
+    height: 12mm;
     display: table-cell;
     vertical-align: middle;
 }
 
 .clubLogo {
-    height: 24mm;
+    height: 19mm;
     display: table-cell;
     vertical-align: middle;
     text-align: right;
