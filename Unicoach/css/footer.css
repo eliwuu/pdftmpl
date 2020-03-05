@@ -23,19 +23,27 @@ footer {
 }
 
 hr {
-    border: 1px solid gray;
-    margin: 0;
+    border: none;
+    background-color: #ccc;
+    color: #ccc;
+    height: 1px;
+    display: table-caption;
     margin-bottom: 1mm;
-    height: 100%;
 }
 
 .leftText {
     display: table-cell;
     vertical-align: bottom;
+    padding-left: 1mm;
 }
 
-.leftText p:not(small) {
+/* .leftText p:not(small) {
     margin-block-start: 0.5mm;
+} */
+
+p {
+    margin-bottom: 1mm;
+    margin-top: 1mm;
 }
 
 p.small {
@@ -47,4 +55,5 @@ p.small {
     vertical-align: bottom;
     text-align: right;
     color: rgb(90, 90, 90);
+    padding-right: 1mm;
 }

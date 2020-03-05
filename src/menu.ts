@@ -1,9 +1,17 @@
 import inquirer = require("inquirer");
-import { templateMenu } from "./menuItems";
+import { templateMenu, initMenu, templateType } from "./menuItems";
 import { Template, Layout, Orientation, Unit, Dpi, Section } from "./settings";
 
 export default class Menu {
     static async init() {
+        const data = await inquirer.prompt(initMenu).then(answers => {
+            return answers;
+        }) ;
+        const templateType = data["templateType"] as templateType;
+
+        return templateType;
+    }
+    static async initFull() {
         const data = await inquirer.prompt(templateMenu).then(answers => {
             return answers;
         });
@@ -39,5 +47,8 @@ export default class Menu {
         }
 
         return { template: template, layout: layout, section: section };
+    }
+    static async initInline() {
+
     }
 }

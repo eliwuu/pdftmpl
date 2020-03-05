@@ -4,7 +4,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: 8pt;
-    /* background-color: navajowhite; */
+    background-color: navajowhite;
 }
 
 .page {
@@ -12,7 +12,7 @@ body {
     max-width: 200mm;
     margin-left: 5mm;
     margin-right: 5mm;
-    /* background-color: paleturquoise; */
+    background-color: paleturquoise;
 }
 
 table {
@@ -122,6 +122,8 @@ table.excersise {
     border-collapse: collapse;
     border-spacing: 0;
     border: 0;
+    margin-left: 0.75mm;
+    margin-right: 0.75mm;
 }
 
 .ex1 .ribbonIn {
@@ -212,19 +214,26 @@ table.excersise th.col-80 {
     max-width: 86.5mm;
 }
 table.excersise th.col-88 {
-    min-width: 88.5mm;
-    max-width: 88.5mm;
+    min-width: 81mm;
+    max-width: 81mm;
 }
 table.excersise th.col-84 {
-    min-width: 84mm;
-    max-width: 84mm;
+    min-width: 80mm;
+    max-width: 80mm;
 }
 
-table.excersise thead th.col-80 {
+table.excersise thead th.col-88 {
     background-color: rgb(240, 240, 240);
 }
 
-table.excersise tfoot th.col-80 {
+table.excersise tfoot th.col-88 {
+    background-color: white;
+}
+table.excersise thead th.col-84 {
+    background-color: rgb(240, 240, 240);
+}
+
+table.excersise tfoot th.col-84 {
     background-color: white;
 }
 
