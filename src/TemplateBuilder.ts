@@ -6,7 +6,7 @@ import Html from "./htmlBuilder";
 import { subst } from "./subst";
 
 export default class TemplateBuilder {
-    static async MakeFullTemplate(cwd: string) {
+    static async Make(cwd: string) {
         
         const data = await Menu.initFull();
         
@@ -51,17 +51,5 @@ export default class TemplateBuilder {
             writeFileSync(path.join(jsPath, "subst.js"), subst);
         }
         writeFileSync(path.join(templatePath, "settings.json"), JSON.stringify(data));
-    }
-
-    static async MakeUrlTemplate(cwd: string) {
-
-    }
-
-    static async MakeInlineTemplate(cwd: string) {
-        
-    }
-
-    private static MakeDir(path: string) {
-
     }
 }
