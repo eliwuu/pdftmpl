@@ -18,6 +18,7 @@
     "pdf",
     "template"
   ],
+  "bin": "build/index.js",
   "author": "Marek Wilk",
   "license": "ISC",
   "dependencies": {
