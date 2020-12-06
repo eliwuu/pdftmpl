@@ -1,6 +1,6 @@
 {
   "name": "pdftemplate",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "template generator for pdf wkhtmltopdf-renderer microservice",
   "main": "pdftemplate",
   "scripts": {
