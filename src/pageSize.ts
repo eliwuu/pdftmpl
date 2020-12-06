@@ -39,5 +39,5 @@ export const fullPageSizeList = {
 
 export const pageDefaults = {
     A4: { printerMargins: 2.5, userMargin: 2.5 },
-    Letter: {printerMargins: 4, }
+    Letter: { printerMargins: 4, userMargin: 2.5 }
 }

@@ -1,9 +1,11 @@
+import gitInit from "./gitInit";
 import TemplateBuilder from "./TemplateBuilder";
 
 async function main() {
     const cwd = process.cwd();
 
-    const initMenu = await TemplateBuilder.Make(cwd);
+    await gitInit(cwd);
+    await TemplateBuilder.Make(cwd);
 }
 
 main();

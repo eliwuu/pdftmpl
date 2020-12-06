@@ -1,11 +1,11 @@
 import { pageSizeList } from "./pageSize";
 
 export const templateMenu = [
-    {
-        type: "confirm",
-        name: "git_repo",
-        message: "Initialize Git Repository? ",
-    },
+    // {
+    //     type: "confirm",
+    //     name: "git_repo",
+    //     message: "Initialize Git Repository? ",
+    // },
     {
         type: "input",
         name: "author",

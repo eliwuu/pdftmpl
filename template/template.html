@@ -10,27 +10,25 @@
 </head>
 
 <body>
-    <section class="container">
-        <div id="mrg" class="btn selected" onclick="selectItem(this.id)">
+    <section class="menu">
+        <div id="printMargin" class="btn selected" onclick="selectItem(this.id)">
             Printer Margins
         </div>
-        <div id="userMrg" class="btn" onclick="selectItem(this.id)">
+        <div id="userMargin" class="btn" onclick="selectItem(this.id)">
             User Margins
         </div>
-        <div id="ftr" class="btn">
+        <div id="footerMargin" class="btn" onclick="selectItem(this.id)">
             Footer
         </div>
-        <div id="cont" class="btn">
-            Content
-        </div>
-        <div id="hdr" class="btn">
+        <div id="headerMargin" class="btn" onclick="selectItem(this.id)">
             Header
         </div>
-        <div id="combined" class="btn">
+        <div id="combined" class="btn" onclick="selectItem(this.id)">
             Combined
         </div>
+        <h3>A4 page for reference:</h3>
     </section>
-    <section class="container">
+    <section class="container" id="printMarginContainer">
         <table class="printMargin">
             <tr class="top">
                 <td class="mrg" colspan="3">Printer Margin: 2.5mm</td>
@@ -57,7 +55,7 @@
             </tr>
         </table>
     </section>
-    <section class="container">
+    <section class="container hidden" id="userMarginContainer">
         <table class="userMargin">
             <tr class="top">
                 <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
@@ -105,7 +103,7 @@
         </table>
     </section>
 
-    <section class="container">
+    <section class="container hidden" id="headerMarginContainer">
         <table class="userMargin">
             <tr class="top">
                 <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
@@ -167,7 +165,7 @@
             </tr>
         </table>
     </section>
-    <section class="container">
+    <section class="container hidden" id="footerMarginContainer">
         <table class="userMargin">
             <tr class="top">
                 <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>
@@ -230,7 +228,7 @@
         </table>
     </section>
 
-    <section class="container">
+    <section class="container hidden" id="combinedContainer">
         <table class="userMargin">
             <tr class="top">
                 <td class="mrg" colspan="5">Printer Margin: 2.5mm</td>

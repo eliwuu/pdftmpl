@@ -1,7 +1,7 @@
 {
   "name": "pdftemplate",
   "version": "0.0.1",
-  "description": "template generator for pdfservice",
+  "description": "template generator for pdf wkhtmltopdf-renderer microservice",
   "main": "pdftemplate",
   "scripts": {
     "start": "npm run serve",
@@ -10,7 +10,9 @@
     "serve": "node build/index.js",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "test": "mocha -r ts-node/register tests/**/*.test.ts",
-    "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test"
+    "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test",
+    "main": "build/index.js",
+    "types": "dist/index.d.ts"
   },
   "keywords": [
     "pdf",
@@ -19,13 +21,13 @@
   "author": "Marek Wilk",
   "license": "ISC",
   "dependencies": {
-    "@types/mime-types": "^2.1.0",
     "cliui": "^6.0.0",
     "command-line-args": "^5.1.1",
     "inquirer": "^7.0.4",
     "mime-types": "^2.1.26"
   },
   "devDependencies": {
+    "@types/mime-types": "^2.1.0",
     "@types/chai": "^4.2.8",
     "@types/command-line-args": "^5.0.0",
     "@types/eslint": "^6.1.7",
