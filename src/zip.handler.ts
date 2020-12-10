@@ -1,7 +1,7 @@
 class ZipHandler {
     constructor (private readonly folderPath: string) {}
 
-    public async preaparePackage(templateName: string, data: Buffer) {
+    public async preaparePackage(templatePath: string, templateName: string) {
         
     }
 }
