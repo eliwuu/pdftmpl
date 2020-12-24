@@ -1,10 +1,3 @@
-import TemplateBuilder from "./TemplateBuilder";
+import { CliHandler } from "./cli.handler";
 
-async function main() {
-    const cwd = process.cwd();
-
-    await TemplateBuilder.Make(cwd);
-}
-
-main();
-
+new CliHandler().init();
