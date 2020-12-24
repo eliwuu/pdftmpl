@@ -4,6 +4,8 @@ import { existsSync, mkdirSync, writeFileSync } from "fs";
 import Css from "./cssBuilder";
 import Html from "./htmlBuilder";
 import { subst } from "./subst";
+import { chdir } from "process";
+import { gitAdd, gitInit } from "./giti.init";
 
 export default class TemplateBuilder {
     static async Make(cwd: string) {
@@ -51,5 +53,10 @@ export default class TemplateBuilder {
             writeFileSync(path.join(jsPath, "subst.js"), subst);
         }
         writeFileSync(path.join(templatePath, "settings.json"), JSON.stringify(data));
+
+        if (data.template.git) {
+            gitInit(data.template.name);
+            gitAdd(data.template.name);
+        }
     }
 }

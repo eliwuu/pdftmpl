@@ -19,7 +19,7 @@ export default class Menu {
     const elements = data["elements"] as string[];
 
     const pkg: Package = {
-      // git: data["git_repo"] as boolean,
+      git: data["git_repo"] as boolean,
       author: data["author"] as string,
       name: data["name"] as string,
       mode: data["templateType"] as Mode,
