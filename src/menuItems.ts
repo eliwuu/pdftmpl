@@ -1,11 +1,11 @@
 import { pageSizeList } from "./pageSize";
 
 export const templateMenu = [
-    // {
-    //     type: "confirm",
-    //     name: "git_repo",
-    //     message: "Initialize Git Repository? ",
-    // },
+    {
+        type: "confirm",
+        name: "git_repo",
+        message: "Initialize Git Repository? ",
+    },
     {
         type: "input",
         name: "author",
@@ -19,6 +19,9 @@ export const templateMenu = [
             if (value.length < 3) {
                 return "You need to specify template name";
             }
+            if(value.match(/(\/)|(\.)\W+/g)) {
+                return "Template name cannot contain \"..\" or \"\\\""
+            }
             return true;
         }
     },
@@ -26,7 +29,7 @@ export const templateMenu = [
         type: "list",
         name: "templateType",
         message: "Select template type",
-        choices: ["Full", "Inline", "Url"],
+        choices: ["content", "inline", "url"],
     },
     {
         type: "list",
