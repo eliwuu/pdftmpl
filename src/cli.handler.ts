@@ -1,4 +1,7 @@
 import commander, { Command } from "commander";
+import { existsSync } from "fs";
+import path from "path";
+import { PackageHandler } from "./package.handler";
 import TemplateBuilder from "./TemplateBuilder";
 
 class CliHandler {
@@ -11,19 +14,20 @@ class CliHandler {
       .option("--setEmail <type>", "set email address")
       .option("--setKey <type>", "set api key")
       .option("--setIp <type>", "set ip/url and port, i.e localhost:3000")
-      .option("--upload");
+      .option(
+        "--upload <type>",
+        'upload template folder --upload "package name"'
+      );
 
     this.cmd.parse(process.argv);
 
     if (this.cmd.setEmail) {
-
       // get email and store it in sqlite3 db
       // or in .json file?
       console.log(this.cmd.setEmail);
     }
 
     if (this.cmd.setUsername) {
-      
     }
 
     if (this.cmd.setKey) {
@@ -35,10 +39,21 @@ class CliHandler {
     }
 
     if (this.cmd.init) {
-      appInit()
+      appInit();
     }
 
     if (this.cmd.upload) {
+      const wd = process.cwd();
+      console.log(this.cmd.upload);
+
+      // check if folder exist
+      if (!existsSync(path.join(wd, this.cmd.upload))) {
+        console.log(`Template ${this.cmd.upload} doesn't exist.`);
+      }
+
+      const pkg = new PackageHandler(wd);
+
+      pkg.zipFolder(this.cmd.upload);
       // load user credentials
       // load ip/url [prefer url instead of ip addresses due to vulnerabilities that may leak server credentials in ssrf]
       // validate folder, select files and folders from manifest
@@ -47,9 +62,8 @@ class CliHandler {
       // zip them, calculate zip checksum
       // get zip file as a buffer, send it to ip/url
       // report back status
-      
+
       // log error on stdout if problems
-    
     }
   }
 }
