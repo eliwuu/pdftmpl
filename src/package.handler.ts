@@ -29,6 +29,8 @@ class PackageHandler {
 
     if (options?.toFile) {
       zip.writeZip(packageName + ".zip");
+
+      return;
     }
 
     return zip.toBuffer();
