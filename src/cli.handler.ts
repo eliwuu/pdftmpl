@@ -53,7 +53,7 @@ class CliHandler {
 
       const pkg = new PackageHandler(wd);
 
-      pkg.zipFolder(this.cmd.upload);
+      pkg.zipPackage(this.cmd.upload, { toFile: true });
       // load user credentials
       // load ip/url [prefer url instead of ip addresses due to vulnerabilities that may leak server credentials in ssrf]
       // validate folder, select files and folders from manifest
