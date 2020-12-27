@@ -1,9 +1,16 @@
-import commander, { Command } from "commander";
+import { Command } from "commander";
 import { existsSync, readFileSync, readSync } from "fs";
 import path from "path";
 import { PackageHandler } from "./package.handler";
 import TemplateBuilder from "./TemplateBuilder";
+import os from "os";
 
+interface AppSettings {
+  username: string;
+  userkey: string;
+  useremail: string;
+  ip: string;
+}
 class CliHandler {
   private cmd = new Command();
 
@@ -78,6 +85,30 @@ class CliHandler {
     }
 
     console.log(hash);
+  }
+
+  private checkSettings() {
+    const homedir = os.homedir();
+
+    if (!existsSync(path.join(homedir, ".pdfcli"))) return false;
+
+    return true;
+  }
+
+  private readSettings() {}
+  private setSettings(
+    settings: {
+      username?: string;
+      userkey?: string;
+      useremail?: string;
+      ip?: string;
+    },
+    global?: boolean
+  ) {
+    const homedir = os.homedir();
+    const settingsPath = path.join(homedir, ".pdfcli");
+
+    const settings = readFileSync(settingsPath, { encoding: "utf-8" });
   }
 }
 
