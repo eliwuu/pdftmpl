@@ -1,5 +1,5 @@
 import commander, { Command } from "commander";
-import { existsSync } from "fs";
+import { existsSync, readFileSync, readSync } from "fs";
 import path from "path";
 import { PackageHandler } from "./package.handler";
 import TemplateBuilder from "./TemplateBuilder";
@@ -43,17 +43,7 @@ class CliHandler {
     }
 
     if (this.cmd.upload) {
-      const wd = process.cwd();
-      console.log(this.cmd.upload);
-
-      // check if folder exist
-      if (!existsSync(path.join(wd, this.cmd.upload))) {
-        console.log(`Template ${this.cmd.upload} doesn't exist.`);
-      }
-
-      const pkg = new PackageHandler(wd);
-
-      pkg.zipPackage(this.cmd.upload, { toFile: true });
+      this.handleUpload(this.cmd.upload, true);
       // load user credentials
       // load ip/url [prefer url instead of ip addresses due to vulnerabilities that may leak server credentials in ssrf]
       // validate folder, select files and folders from manifest
@@ -62,9 +52,32 @@ class CliHandler {
       // zip them, calculate zip checksum
       // get zip file as a buffer, send it to ip/url
       // report back status
-
       // log error on stdout if problems
     }
+  }
+
+  private handleUpload(templateName: string, toFile?: boolean) {
+    const wd = process.cwd();
+    console.log(templateName);
+
+    // check if folder exist
+    if (!existsSync(path.join(wd, templateName))) {
+      console.log(`Template ${templateName} doesn't exist.`);
+    }
+
+    const pkg = new PackageHandler(wd);
+
+    const data = pkg.zipPackage(templateName, { toFile });
+
+    let hash: string;
+    if (toFile) {
+      const rzip = readFileSync(path.join(wd, templateName + ".zip"));
+      hash = pkg.checksum(rzip);
+    } else {
+      hash = pkg.checksum(data as Buffer);
+    }
+
+    console.log(hash);
   }
 }
 
