@@ -1,5 +1,5 @@
 import AdmZip from "adm-zip";
-import { readdirSync, statSync } from "fs";
+import { readdirSync, readFileSync, statSync } from "fs";
 import path from "path";
 
 class PackageHandler {
@@ -20,6 +20,20 @@ class PackageHandler {
     }
 
     zip.writeZip(packageName + ".zip");
+  }
+
+  public zipFolderPackage(packageName: string) {
+    const zip = new AdmZip();
+
+    const templatePath = path.join(this.folderPath, packageName);
+
+    const content = this.scanFolder(templatePath).flat();
+
+    for (const item of content) {
+      if (item.charAt(item.length -1) !== "/") {
+        zip.addFile(item, readFileSync(item), "", statSync(item).atime())
+      }
+    }
   }
 
   public zipFolder(packageName: string) {
