@@ -7,73 +7,52 @@ class PackageHandler {
 
   public async preaparePackage(templatePath: string, templateName: string) {}
 
-  public zipPackage(packageName: string) {
+  public zipPackage(
+    packageName: string,
+    options?: { toFile?: boolean }
+  ): void | Buffer {
     const zip = new AdmZip();
 
     const templatePath = path.join(this.folderPath, packageName);
 
-    const content = this.scanFolder(templatePath).flat();
+    const content = this.scanFolder(templatePath, true);
 
     for (const item of content) {
-      console.log(item);
-      zip.addLocalFile(item);
-    }
-
-    zip.writeZip(packageName + ".zip");
-  }
-
-  public zipFolderPackage(packageName: string) {
-    const zip = new AdmZip();
-
-    const templatePath = path.join(this.folderPath, packageName);
-
-    const content = this.scanFolder(templatePath).flat();
-
-    for (const item of content) {
-      if (item.charAt(item.length -1) !== "/") {
-        zip.addFile(item, readFileSync(item), "", statSync(item).atime())
+      if (item.charAt(item.length - 1) !== "/") {
+        const rel = path.relative(templatePath, item);
+        zip.addFile(rel, readFileSync(item));
+      } else {
+        const base = path.basename(item);
+        zip.addFile(base + "/", Buffer.alloc(0));
       }
     }
-  }
 
-  public zipFolder(packageName: string) {
-    const zip = new AdmZip();
-
-    const templatePath = path.join(this.folderPath, packageName);
-
-    // zip.addLocalFolder(templatePath, this.folderPath, /(\\\.)\w+/g);
-    zip.addLocalFolder(templatePath);
-
-    zip.writeZip(packageName + "h" + ".zip");
-  }
-  private scanFolder(
-    nextDir: string,
-    currentDir?: string
-  ): (string | string[])[] {
-    if (currentDir) {
-      nextDir = path.join(currentDir, nextDir);
+    if (options?.toFile) {
+      zip.writeZip(packageName + ".zip");
     }
 
-    const fileContent: any = [];
-    const content = readdirSync(nextDir);
+    return zip.toBuffer();
+  }
+
+  private scanFolder(dir: string, recursive?: boolean): string[] {
+    let fileList: string[] = [];
+    const content = readdirSync(dir);
 
     for (let item of content) {
-      if (item.startsWith(".")) {
-        continue;
-      }
+      if (item.startsWith(".")) continue;
 
-      let itemPath = path.join(nextDir, item);
+      let itemPath = path.join(dir, item);
 
-      if (statSync(itemPath).isDirectory()) {
-        fileContent.push(this.scanFolder(item, nextDir).flat());
-      }
+      if (statSync(itemPath).isDirectory() && recursive)
+        fileList = fileList.concat(this.scanFolder(itemPath, recursive));
 
-      if (statSync(itemPath).isFile()) {
-        fileContent.push(itemPath);
-      }
+      fileList.push(
+        path.normalize(itemPath) +
+          (statSync(itemPath).isDirectory() ? path.sep : "")
+      );
     }
 
-    return fileContent;
+    return fileList;
   }
 }
 
