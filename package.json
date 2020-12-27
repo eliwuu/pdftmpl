@@ -27,9 +27,11 @@
     "adm-zip": "^0.5.1",
     "cliui": "^6.0.0",
     "commander": "^6.2.0",
+    "crypto-js": "^4.0.0",
     "inquirer": "^7.0.4"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.0.1",
     "@types/adm-zip": "^0.4.33",
     "@types/chai": "^4.2.8",
     "@types/eslint": "^6.1.7",
