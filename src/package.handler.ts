@@ -1,11 +1,9 @@
 import AdmZip from "adm-zip";
 import { readdirSync, readFileSync, statSync } from "fs";
 import path from "path";
-
+import crypto from "crypto";
 class PackageHandler {
   constructor(private readonly folderPath: string) {}
-
-  public async preaparePackage(templatePath: string, templateName: string) {}
 
   public zipPackage(
     packageName: string,
@@ -34,6 +32,13 @@ class PackageHandler {
     }
 
     return zip.toBuffer();
+  }
+
+  public checksum(data: string | Buffer) {
+    
+    const cr = crypto;
+
+    return cr.createHash("sha256").update(data).digest("hex");
   }
 
   private scanFolder(dir: string, recursive?: boolean): string[] {
