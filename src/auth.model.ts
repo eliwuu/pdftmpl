@@ -6,5 +6,6 @@ interface LoginDto {
 }
 
 interface Handshake {
-    userKey: string;    
+    userKey: string;   
+    requestId: string;
 }
