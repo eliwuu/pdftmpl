@@ -29,24 +29,47 @@ class CliHandler {
 
     this.cmd.parse(process.argv);
 
+    if (this.cmd.global) {
+      // console.log(this.cmd.opts());
+      const options = this.cmd.opts();
+
+      if (options.setUsername) {
+        this.setSettings({ username: options.setUsername }, true);
+      }
+
+      if (options.setEmail) {
+        this.setSettings({ username: options.setEmail }, true);
+      }
+
+      if (options.setKey) {
+        this.setSettings({ username: options.setKey }, true);
+      }
+
+      if (options.setIp) {
+        this.setSettings({ username: options.setIp }, true);
+      }
+
+      return;
+    }
     if (this.cmd.setEmail) {
-      this.setSettings({useremail: this.cmd.setEmail});
+      this.setSettings({ useremail: this.cmd.setEmail });
     }
 
     if (this.cmd.setUsername) {
-      this.setSettings({username: this.cmd.setUsername});
+      this.setSettings({ username: this.cmd.setUsername });
     }
 
     if (this.cmd.setKey) {
-      this.setSettings({userkey: this.cmd.setKey});
+      this.setSettings({ userkey: this.cmd.setKey });
     }
 
     if (this.cmd.setIp) {
-      this.setSettings({ip: this.cmd.setIp});
+      this.setSettings({ ip: this.cmd.setIp });
     }
 
     if (this.cmd.init) {
       appInit();
+      return;
     }
 
     if (this.cmd.upload) {
@@ -60,23 +83,21 @@ class CliHandler {
       // get zip file as a buffer, send it to ip/url
       // report back status
       // log error on stdout if problems
-    }
-    if (this.cmd.global) {
-      console.log(this.cmd.opts);
+      return;
     }
   }
 
   private handleUpload(templateName: string, toFile?: boolean) {
     const wd = process.cwd();
-    console.log(templateName);
 
-    // check if folder exist
+    if (!this.checkGlobal() && !this.checkLocal(wd)) return;
+
     if (!existsSync(path.join(wd, templateName))) {
       console.log(`Template ${templateName} doesn't exist.`);
+      return;
     }
 
     const pkg = new PackageHandler(wd);
-
     const data = pkg.zipPackage(templateName, { toFile });
 
     let hash: string;
@@ -86,21 +107,23 @@ class CliHandler {
     } else {
       hash = pkg.checksum(data as Buffer);
     }
-
-    console.log(hash);
   }
 
-  private checkSettings() {
-    const homedir = os.homedir();
+  private checkGlobal() {
+    if (!existsSync(path.join(os.homedir(), ".pdfcli.json"))) return false;
 
-    if (!existsSync(path.join(homedir, ".pdfcli"))) return false;
+    return true;
+  }
+
+  private checkLocal(wd: string) {
+    if (!existsSync(path.join(wd, ".pdfcli.json"))) return false;
 
     return true;
   }
 
   private readSettings() {
-    const localPath = path.join(process.cwd(), ".pdfcli");
-    const globalPath = path.join(os.homedir(), ".pdfcli");
+    const localPath = path.join(process.cwd(), ".pdfcli.json");
+    const globalPath = path.join(os.homedir(), ".pdfcli.json");
     if (existsSync(localPath))
       return <AppSettings>(
         JSON.parse(readFileSync(localPath, { encoding: "utf-8" }))
@@ -123,12 +146,21 @@ class CliHandler {
     },
     global?: boolean
   ) {
-    const homedir = os.homedir();
-    const globalPath = path.join(homedir, ".pdfcli");
+    const globalPath = path.join(os.homedir(), ".pdfcli.json");
 
-    const load = readFileSync(globalPath, { encoding: "utf-8" });
+    let data: AppSettings;
 
-    const data: AppSettings = JSON.parse(load);
+    if (existsSync(globalPath)) {
+      const load = readFileSync(globalPath, { encoding: "utf-8" });
+      data = JSON.parse(load);
+    } else {
+      data = {
+        ip: "",
+        useremail: "",
+        userkey: "",
+        username: "",
+      };
+    }
 
     settings.ip ? (data.ip = settings.ip) : data.ip;
     settings.useremail ? (data.useremail = settings.useremail) : data.useremail;
@@ -141,9 +173,9 @@ class CliHandler {
       return;
     }
 
-    const localPath = path.join(process.cwd(), ".pdfcli");
+    const localPath = path.join(process.cwd(), ".pdfcli.json");
 
-    writeFileSync(localPath, data, { encoding: "utf-8" });
+    writeFileSync(localPath, JSON.stringify(data), { encoding: "utf-8" });
     return;
   }
 }
