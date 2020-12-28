@@ -8,7 +8,7 @@ import {
   Dpi,
   Section,
   Mode,
-} from "./settings";
+} from "./package.model";
 
 export default class Menu {
   static async initFull() {
@@ -17,14 +17,7 @@ export default class Menu {
     });
 
     const elements = data["elements"] as string[];
-
-    const pkg: Package = {
-      git: data["git_repo"] as boolean,
-      author: data["author"] as string,
-      name: data["name"] as string,
-      mode: data["templateType"] as Mode,
-    };
-
+    
     const layout: Layout = {
       pageSize: data["pageSize"] as string,
       margins: {
@@ -37,20 +30,35 @@ export default class Menu {
       unit: data["unit"] as Unit,
       dpi: data["dpi"] as Dpi,
     };
-
+    
     const section: Section = {
-      header: elements.includes("Header"),
-      footer: elements.includes("Footer"),
-      content: (data["templateType"] as Mode) === "content" ? true : false,
       headerHeight: elements.includes("Header")
-        ? (+data["headerHeight"] as number)
-        : 0,
+      ? (+data["headerHeight"] as number)
+      : 0,
       footerHeight: elements.includes("Footer")
-        ? (+data["footerHeight"] as number)
-        : 0,
+      ? (+data["footerHeight"] as number)
+      : 0,
       autoNumbering: data["autoNumbering"] as boolean,
     };
+    
+    const pkg: Package = {
+      git: data["git_repo"] as boolean,
+      author: data["author"] as string,
+      name: data["name"] as string,
+      mode: data["templateType"] as Mode,
+      version: "1.0.0",
+      includes: {
+        header: elements.includes("Header"),
+        footer: elements.includes("Footer"),
+        content: (data["templateType"] as Mode) === "content" ? true : false,
+      },
+      template: {
+        section: section,
+        layout: layout
+      }
+    };
 
-    return { template: pkg, layout: layout, section: section };
+
+    return pkg;
   }
 }
