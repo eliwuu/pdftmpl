@@ -100,6 +100,8 @@ class CliHandler {
     const pkg = new PackageHandler(wd);
     const data = pkg.zipPackage(templateName, { toFile });
 
+    const fileManifest = pkg.fileManifest; 
+
     let hash: string;
     if (toFile) {
       const rzip = readFileSync(path.join(wd, templateName + ".zip"));

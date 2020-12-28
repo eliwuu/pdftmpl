@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, statSync } from "fs";
 import path from "path";
 import crypto from "crypto";
 class PackageHandler {
+  fileManifest?: string[];
   constructor(private readonly folderPath: string) {}
 
   public zipPackage(
@@ -14,7 +15,8 @@ class PackageHandler {
     const templatePath = path.join(this.folderPath, packageName);
 
     const content = this.scanFolder(templatePath, true);
-
+    this.fileManifest = content;
+    
     for (const item of content) {
       if (item.charAt(item.length - 1) !== "/") {
         const rel = path.relative(templatePath, item);
@@ -35,7 +37,6 @@ class PackageHandler {
   }
 
   public checksum(data: string | Buffer) {
-    
     const cr = crypto;
 
     return cr.createHash("sha256").update(data).digest("hex");
