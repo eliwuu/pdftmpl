@@ -63,10 +63,4 @@ class PackageHandler {
   }
 }
 
-interface IPackageHandler {
-  preparePackage(templatePath: string, templateName: string);
-  zipPackage(path);
-  postPackage(data: Buffer, handshake: Handshake);
-}
-
 export { PackageHandler };
