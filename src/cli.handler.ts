@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { existsSync, readFileSync, readSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import path from "path";
 import { PackageHandler } from "./package.handler";
 import TemplateBuilder from "./TemplateBuilder";
@@ -24,25 +24,25 @@ class CliHandler {
       .option(
         "--upload <type>",
         'upload template folder --upload "package name"'
-      );
+      )
+      .option("--global", "sets global options");
 
     this.cmd.parse(process.argv);
 
     if (this.cmd.setEmail) {
-      // get email and store it in sqlite3 db
-      // or in .json file?
-      console.log(this.cmd.setEmail);
+      this.setSettings({useremail: this.cmd.setEmail});
     }
 
     if (this.cmd.setUsername) {
+      this.setSettings({username: this.cmd.setUsername});
     }
 
     if (this.cmd.setKey) {
-      // should we keep keys local (per project) or global with email?
+      this.setSettings({userkey: this.cmd.setKey});
     }
 
     if (this.cmd.setIp) {
-      // should we keep ip/urls (per project)?
+      this.setSettings({ip: this.cmd.setIp});
     }
 
     if (this.cmd.init) {
@@ -60,6 +60,9 @@ class CliHandler {
       // get zip file as a buffer, send it to ip/url
       // report back status
       // log error on stdout if problems
+    }
+    if (this.cmd.global) {
+      console.log(this.cmd.opts);
     }
   }
 
@@ -95,7 +98,22 @@ class CliHandler {
     return true;
   }
 
-  private readSettings() {}
+  private readSettings() {
+    const localPath = path.join(process.cwd(), ".pdfcli");
+    const globalPath = path.join(os.homedir(), ".pdfcli");
+    if (existsSync(localPath))
+      return <AppSettings>(
+        JSON.parse(readFileSync(localPath, { encoding: "utf-8" }))
+      );
+
+    if (existsSync(globalPath))
+      return <AppSettings>(
+        JSON.parse(readFileSync(globalPath, { encoding: "utf-8" }))
+      );
+
+    return undefined;
+  }
+
   private setSettings(
     settings: {
       username?: string;
@@ -106,9 +124,27 @@ class CliHandler {
     global?: boolean
   ) {
     const homedir = os.homedir();
-    const settingsPath = path.join(homedir, ".pdfcli");
+    const globalPath = path.join(homedir, ".pdfcli");
 
-    const settings = readFileSync(settingsPath, { encoding: "utf-8" });
+    const load = readFileSync(globalPath, { encoding: "utf-8" });
+
+    const data: AppSettings = JSON.parse(load);
+
+    settings.ip ? (data.ip = settings.ip) : data.ip;
+    settings.useremail ? (data.useremail = settings.useremail) : data.useremail;
+    settings.userkey ? (data.userkey = settings.userkey) : data.userkey;
+    settings.username ? (data.username = settings.username) : data.username;
+
+    if (global) {
+      writeFileSync(globalPath, JSON.stringify(data), { encoding: "utf-8" });
+
+      return;
+    }
+
+    const localPath = path.join(process.cwd(), ".pdfcli");
+
+    writeFileSync(localPath, data, { encoding: "utf-8" });
+    return;
   }
 }
 
