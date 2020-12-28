@@ -1,9 +1,6 @@
-import { subst } from "./subst";
-
-export default class Html {
-
-    static MakeContent(templateName: string) {
-        const html = `<!DOCTYPE html>
+class Html {
+  static MakeContent(templateName: string) {
+    const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,13 +14,13 @@ export default class Html {
     
     </div>
 </body>
-</html>`
+</html>`;
 
-        return html;
-    }
+    return html;
+  }
 
-    static MakeBlock(autoNumbering: boolean, blockName: string) {
-        const html = `<!DOCTYPE html>
+  static MakeBlock(autoNumbering: boolean, blockName: string) {
+    const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,14 +29,15 @@ export default class Html {
     <script src="js/${blockName}.js"></script>
     ${blockName ? `<script src="js/subst.js"></script>` : ""}
 </head>
-${autoNumbering ? `<body onload="subst()">` : `<body>` }
+${autoNumbering ? `<body onload="subst()">` : `<body>`}
     <${blockName}>
     
     </${blockName}>
 </body>
-</html>`
+</html>`;
 
-        return html;
-    }
-
+    return html;
+  }
 }
+
+export { Html };
