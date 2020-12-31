@@ -2,16 +2,31 @@ import { ZipPackage } from "./package.model";
 import http from "http";
 
 class CommHandler {
+  public sendPackage(
+    packageName: string,
+    data: Buffer,
+    destination: string,
+    port: number
+  ) {
+    const options = {
+      host: destination,
+      port: port.toString(),
+      path: "/file",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/zip",
+        "Content-Length": Buffer.byteLength(data),
+        Filename: packageName + ".zip",
+      },
+    };
 
-    /**
-     * sendPackage
-zipPackage: ZipPackage     */
-    public sendPackage(zipPackage: ZipPackage, data: Buffer) {
-        const client = http;
+    const req = http.request(options);
 
-        const options: http.RequestOptions = {
+    // implement multiple streams, req.write(chunk);
 
-        }
-        // client.request()
-    }
+    req.write(data);
+    if (req.writableFinished) req.end();
+  }
 }
+
+export { CommHandler };
