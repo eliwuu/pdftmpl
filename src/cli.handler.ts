@@ -4,6 +4,7 @@ import path from "path";
 import { PackageHandler } from "./package.handler";
 import TemplateBuilder from "./TemplateBuilder";
 import os from "os";
+import { CommHandler } from "./comm.handler";
 
 interface AppSettings {
   username: string;
@@ -73,6 +74,8 @@ class CliHandler {
     }
 
     if (this.cmd.upload) {
+      console.log("we are in upload");
+      console.log(this.cmd.upload);
       this.handleUpload(this.cmd.upload, true);
       // load user credentials
       // load ip/url [prefer url instead of ip addresses due to vulnerabilities that may leak server credentials in ssrf]
@@ -90,7 +93,7 @@ class CliHandler {
   private handleUpload(templateName: string, toFile?: boolean) {
     const wd = process.cwd();
 
-    if (!this.checkGlobal() && !this.checkLocal(wd)) return;
+    // if (!this.checkGlobal() && !this.checkLocal(wd)) return;
 
     if (!existsSync(path.join(wd, templateName))) {
       console.log(`Template ${templateName} doesn't exist.`);
@@ -98,17 +101,25 @@ class CliHandler {
     }
 
     const pkg = new PackageHandler(wd);
-    const data = pkg.zipPackage(templateName, { toFile });
+    const data = pkg.zipPackage(templateName, { toFile: toFile });
 
-    const fileManifest = pkg.fileManifest; 
+    const fileManifest = pkg.fileManifest;
 
     let hash: string;
+    let rzip: Buffer;
     if (toFile) {
-      const rzip = readFileSync(path.join(wd, templateName + ".zip"));
+      rzip = readFileSync(path.join(wd, templateName + ".zip"));
       hash = pkg.checksum(rzip);
     } else {
       hash = pkg.checksum(data as Buffer);
     }
+
+    new CommHandler().sendPackage(
+      templateName,
+      toFile? rzip! : data as Buffer,
+      "localhost",
+      5000
+    );
   }
 
   private checkGlobal() {
