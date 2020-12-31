@@ -16,6 +16,7 @@ class PackageHandler {
 
     const content = this.scanFolder(templatePath, true);
     this.fileManifest = content;
+    console.log(JSON.stringify(content));
     
     for (const item of content) {
       if (item.charAt(item.length - 1) !== "/") {
@@ -28,12 +29,17 @@ class PackageHandler {
     }
 
     if (options?.toFile) {
+      console.log("we should be saving file");
       zip.writeZip(packageName + ".zip");
 
       return;
     }
 
     return zip.toBuffer();
+  }
+
+  public zipLargePackage() {
+    // implement memory-efficient zip (write in chunks);
   }
 
   public checksum(data: string | Buffer) {
